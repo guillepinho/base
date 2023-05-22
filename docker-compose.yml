@@ -1,0 +1,49 @@
+version: '3'
+services:
+  frontend:
+    build: ./frontend/
+    container_name: frontend
+    tty: true
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend/:/app
+    depends_on:
+      - backend
+    networks:
+      - conn
+
+  backend:
+    build: ./backend/
+    container_name: backend
+    tty: true
+    ports:
+      - "8000:8000"
+    environment:
+      - API_PORT=8000
+      - SECRET-KEY=secret
+    volumes:
+      - ./backend/:/app
+    depends_on:
+      - db
+    networks:
+      - conn
+
+  db:
+    image: mysql:8.0
+    container_name: db
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=app
+      - MYSQL_USER=app
+      - MYSQL_PASSWORD=password
+    volumes:
+      - ./db/:/docker-entrypoint-initdb.d
+    networks:
+      - conn
+
+networks:
+  conn:
+    driver: bridge

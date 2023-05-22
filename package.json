@@ -1,0 +1,14 @@
+{
+  "name": "base",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docker": "docker compose up --build",
+    "docker:clean": "docker stop $(docker ps -aq) && docker system prune -a -f && docker volume prune -f && docker image prune -a -f"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
