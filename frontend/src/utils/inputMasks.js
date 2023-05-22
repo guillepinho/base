@@ -19,3 +19,8 @@ export function cpfMask(cpf = '') {
   }
   return '';
 }
+
+export function removeMasks(string = '') {
+  if (string) return string.replace(/\D+/g, '');
+  return '';
+}

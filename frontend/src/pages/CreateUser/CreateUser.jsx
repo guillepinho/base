@@ -8,6 +8,8 @@ import { DatePicker } from '@mui/x-date-pickers';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import dayjs from 'dayjs';
 import { useSnack } from '../../context/snackbarContext';
+// Logic
+import httpRequests from '../../api/apiRequest';
 // Schema
 import schema from '../../schemas/createUser';
 // Style
@@ -15,6 +17,7 @@ import {
   buttonCss, textfieldCss, datefieldCss, noBgButtonCss,
 } from '../../theme/styles/style';
 import { handleCPF, handlePhoneNumber } from '../../utils/handlers';
+import { removeMasks } from '../../utils/inputMasks';
 
 function CreateUser() {
   const navigate = useNavigate();
@@ -34,9 +37,24 @@ function CreateUser() {
     try {
       const { error } = schema.validate(data);
       if (error) throw Error(error);
+
+      const payload = {
+        name: data.name,
+        cpf: removeMasks(data.cpf),
+        email: data.email,
+        birthdate: data.birthdate,
+        phone: removeMasks(data.phone),
+        password: data.password,
+      };
+      await httpRequests.post('/user/create', payload);
+
+      return alert.success('Usuário criado com sucesso, você será redirecionado à página de login');
     } catch (error) {
-      const message = error.message.replace('ValidationError: ', '');
-      alert.warning(message);
+      if (!error.response) {
+        const message = error.message.replace('ValidationError: ', '');
+        return alert.warning(message);
+      }
+      return alert.warning('Não foi possível processar a requisição no momento, tente novamente mais tarde!');
     }
   };
 
