@@ -1,11 +1,15 @@
 FROM node:18.16
 
-COPY . .
+RUN apt update
+RUN apt install lsof
 
-RUN npm cache clean -f
+COPY package.json .
+
 RUN npm install
+
+COPY . .
 
 EXPOSE 8000
 
-CMD npm run dev
+ENTRYPOINT [ "npm", "run", "dev" ]
 

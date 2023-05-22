@@ -1,39 +1,52 @@
-version: '3'
+version: '3.8'
 services:
   frontend:
-    build: ./frontend/
     container_name: frontend
+    build: ./frontend
+    restart: on-failure
     tty: true
+    stdin_open: true
     ports:
-      - "3000:3000"
+      - 3000:3000
+    working_dir: /home/app-frontend/
     volumes:
-      - ./frontend/:/app
+      - ./frontend/:/home/app-frontend/
     depends_on:
-      - backend
+      backend:
+        condition: service_started
     networks:
       - conn
 
   backend:
-    build: ./backend/
-    container_name: backend
+    container_name: app_backend
+    build: ./backend
+    restart: on-failure
     tty: true
+    stdin_open: true
     ports:
-      - "8000:8000"
+      - 8000:8000
+    working_dir: /home/app-backend/
+    volumes:
+      - ./backend/:/home/app-backend/
+    depends_on:
+      db:
+        condition: service_healthy
     environment:
       - API_PORT=8000
       - SECRET-KEY=secret
-    volumes:
-      - ./backend/:/app
-    depends_on:
-      - db
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_USER=app
+      - DB_PASSWORD=password
     networks:
       - conn
 
   db:
-    image: mysql:8.0
     container_name: db
+    image: mysql:8.0
+    restart: on-failure
     ports:
-      - "3306:3306"
+      - 3306:3306
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=app
@@ -41,6 +54,10 @@ services:
       - MYSQL_PASSWORD=password
     volumes:
       - ./db/:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      timeout: 5s
+      retries: 10
     networks:
       - conn
 

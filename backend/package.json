@@ -5,8 +5,9 @@
   "main": "src/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon . -L",
-    "bash": "docker exec -it backend bash"
+    "pwd": "pwd .",
+    "dev": "nodemon ./backend/** -L",
+    "bash": "docker exec -it app_backend bash"
   },
   "keywords": [],
   "author": {

@@ -1,11 +1,11 @@
 FROM node:alpine
 
-COPY . .
+COPY package.json .
 
-RUN npm cache clean -f
 RUN npm install
+
+COPY . .
 
 EXPOSE 3000
 
-CMD npm run dev
-
+ENTRYPOINT [ "npm", "run", "dev" ]

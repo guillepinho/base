@@ -2,8 +2,8 @@ const express = require('express');
 const cors = require('cors');
 require('express-async-errors');
 
-const routes = require('./routes');
-const passport = require('./utils/passportStrategy');
+// const routes = require('./routes');
+// const passport = require('./utils/passportStrategy');
 const errorMiddleware = require('./middlewares/errorMiddleware');
 // const validateToken = require('./middlewares/validateToken');
 
