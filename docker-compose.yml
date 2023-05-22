@@ -35,7 +35,7 @@ services:
       - API_PORT=8000
       - SECRET-KEY=secret
       - DB_HOST=db
-      - DB_PORT=3306
+      - DB_PORT=3360
       - DB_USER=app
       - DB_PASSWORD=password
     networks:
@@ -46,14 +46,12 @@ services:
     image: mysql:8.0
     restart: on-failure
     ports:
-      - 3306:3306
+      - 3360:3306
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=app
       - MYSQL_USER=app
       - MYSQL_PASSWORD=password
-    volumes:
-      - ./db/:/docker-entrypoint-initdb.d
     healthcheck:
       test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
       timeout: 5s
