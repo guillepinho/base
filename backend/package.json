@@ -5,7 +5,9 @@
   "main": "src/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "pwd": "pwd .",
+    "drop": "npx sequelize-cli db:drop",
+    "migrate": "npx sequelize-cli db:migrate",
+    "seed": "npx sequelize-cli db:seed:all",
     "dev": "nodemon ./backend/** -L",
     "bash": "docker exec -it app_backend bash"
   },
@@ -25,7 +27,8 @@
     "mysql2": "^3.3.1",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.1",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "sequelize": "^6.31.1"
   },
   "devDependencies": {
     "eslint": "^8.40.0",

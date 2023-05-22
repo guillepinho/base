@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 require('express-async-errors');
 
-// const routes = require('./routes');
+const routes = require('./routes');
 // const passport = require('./utils/passportStrategy');
 const errorMiddleware = require('./middlewares/errorMiddleware');
 // const validateToken = require('./middlewares/validateToken');
@@ -14,6 +14,8 @@ app.use(express.json());
 app.use(cors());
 
 app.get('/', (_req, res) => res.status(200).send({ message: 'All good!' }));
+
+app.use('/user', routes.user);
 
 app.use(errorMiddleware);
 

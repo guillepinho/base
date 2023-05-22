@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 const errorsMap = require('../utils/errorsMap');
 
 const errorMiddleware = (err, _req, res, _next) => {
