@@ -9,7 +9,7 @@ import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import dayjs from 'dayjs';
 import { useSnack } from '../../context/snackbarContext';
 // Logic
-import httpRequests from '../../api/apiRequest';
+import routes from '../../services/routes';
 // Schema
 import schema from '../../schemas/createUser';
 // Style
@@ -46,7 +46,7 @@ function CreateUser() {
         phone: removeMasks(data.phone),
         password: data.password,
       };
-      await httpRequests.post('/user/create', payload);
+      await routes.user.create(payload);
 
       return alert.success('Usuário criado com sucesso, você será redirecionado à página de login');
     } catch (error) {

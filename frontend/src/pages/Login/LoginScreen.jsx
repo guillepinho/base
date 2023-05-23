@@ -5,6 +5,9 @@ import {
   Box, Button, Card, Typography, TextField,
 } from '@mui/material';
 import { useSnack } from '../../context/snackbarContext';
+// Logic
+import routes from '../../services/routes';
+import localStorage from '../../utils/localStorage';
 // Schema
 import { schema } from '../../schemas/login';
 // Style
@@ -24,9 +27,17 @@ function LoginScreen() {
     try {
       const { error } = schema.validate(data);
       if (error) throw Error(error);
+
+      const { message } = await routes.user.login(data);
+      localStorage.insertLS('token', message);
+      return navigate('/home');
     } catch (error) {
-      const message = error.message.replace('ValidationError: ', '');
-      alert.warning(message);
+      if (!error.response) {
+        const message = error.message.replace('ValidationError: ', '');
+        return alert.warning(message);
+      }
+      if (error.response.status === 500) return alert.warning('Estamos com um probleminha em nossos servidores, tente novamente mais tarde!');
+      return alert.warning(error.response.data.message);
     }
   };
 
@@ -79,6 +90,7 @@ function LoginScreen() {
           <TextField
             size="small"
             name="password"
+            type="password"
             label="Senha"
             sx={textfieldCss}
             onChange={inputOnChangeHandler}
