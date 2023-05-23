@@ -1,10 +1,10 @@
 import axios from 'axios';
 import convertParams from '../utils/convertParams';
 
-const API = import.meta.env.API_URL;
+const API_URL = import.meta.env.VITE_API_URL;
 
 const api = axios.create({
-  baseURL: 'http://localhost:8000/',
+  baseURL: API_URL,
   headers: {
     'Access-Control-Allow-Origin': '*',
     Authorization: '',
