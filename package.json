@@ -7,10 +7,12 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "docker": "docker compose up --build",
     "docker:clear": "docker stop $(docker ps -aq) && docker system prune -a -f && docker volume prune -f && docker image prune -a -f",
-    "reset": "npm run docker:clean && npm run docker",
-    "migrate": "cd backend && npm run migrate",
-    "seed": "cd backend && npm run seed",
-    "clear": "cd backend && npm run clear"
+    "docker:reset": "npm run docker:clear && npm run docker",
+    "db:start": "npm run db:migrate && npm run db:seed",
+    "db:migrate": "cd backend && npm run migrate",
+    "db:seed": "cd backend && npm run seed",
+    "db:clear": "cd backend && npm run clear",
+    "backend:bash": "cd backend && npm run bash"
   },
   "keywords": [],
   "author": "",
