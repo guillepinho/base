@@ -11,6 +11,8 @@ function Router() {
       <Route path="/" element={<LoginScreen />} />
 
       <Route path="/create" element={<CreateUser />} />
+
+      <Route path="*" element={<h1>Not Found</h1>} />
     </Routes>
   );
 }

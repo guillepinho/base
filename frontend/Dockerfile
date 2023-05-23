@@ -8,4 +8,4 @@ COPY . .
 
 EXPOSE 3000
 
-ENTRYPOINT [ "npm", "run", "dev" ]
+ENTRYPOINT [ "sh", "-c", "npm i && npm run dev" ]
