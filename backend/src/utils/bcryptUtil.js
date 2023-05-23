@@ -12,8 +12,8 @@ const encryptPassword = async (password) => {
 
 /**
  * Compares the provided string password with the hash.
- * @param   {String}  password Provided password
- * @param   {String}  hash     Hash on the server to compare
+ * @param   {String}  password  Provided password
+ * @param   {String}  hash      Hash on the server to compare
  * @returns {Boolean}       Returns true if the password is ok, or false
  */
 const verifyPassword = async (password, hash) => {
