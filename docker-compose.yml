@@ -45,13 +45,16 @@ services:
     container_name: db
     image: mysql:8.0
     restart: on-failure
+    expose:
+      - 3360
     ports:
-      - 3360:3306
+      - 3360:3360
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=app
       - MYSQL_USER=app
       - MYSQL_PASSWORD=password
+      - MYSQL_TCP_PORT=3360
     healthcheck:
       test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
       timeout: 5s
