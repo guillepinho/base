@@ -8,6 +8,10 @@ module.exports = {
           primaryKey: true,
           type: Sequelize.UUID,
         },
+        name: {
+          allowNull: false,
+          type: Sequelize.STRING,
+        },
         cpf: {
           allowNull: false,
           type: Sequelize.STRING,
@@ -28,8 +32,8 @@ module.exports = {
           allowNull: false,
           type: Sequelize.DATE,
         },
-        updatedAt: Sequelize.DATE,
-        createdAt: Sequelize.DATE,
+        updated_at: Sequelize.DATE,
+        created_at: Sequelize.DATE,
       },
     );
     return usersTable;

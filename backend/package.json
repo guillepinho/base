@@ -8,6 +8,7 @@
     "drop": "npx sequelize-cli db:drop",
     "migrate": "npx sequelize-cli db:migrate",
     "seed": "npx sequelize-cli db:seed:all",
+    "clear": "npx sequelize-cli db:migrate:undo:all",
     "dev": "nodemon ./backend/** -L",
     "bash": "docker exec -it app_backend bash"
   },
@@ -28,7 +29,8 @@
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",
-    "sequelize": "^6.31.1"
+    "sequelize": "^6.31.1",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "eslint": "^8.40.0",

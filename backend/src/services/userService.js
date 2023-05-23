@@ -1,5 +1,6 @@
+const { v4: uuidv4 } = require('uuid');
 const bcrypt = require('../utils/bcryptUtil');
-const { userModel, sequelize } = require('../models');
+const { user, sequelize } = require('../models');
 
 /**
  * Creates a user in our database.
@@ -7,16 +8,17 @@ const { userModel, sequelize } = require('../models');
  * @returns The user information
  */
 const create = async (payload) => {
-  const cryptedPassword = bcrypt.encryptPassword(payload.password);
+  const cryptedPassword = await bcrypt.encryptPassword(payload.password);
 
   const dataToInsert = {
     ...payload,
+    id: uuidv4(),
     password: cryptedPassword,
   };
 
   try {
     const result = await sequelize.transaction(async (t) => {
-      const newUser = await userModel.create(dataToInsert, { transaction: t });
+      const newUser = await user.create(dataToInsert, { transaction: t });
       return newUser;
     });
     return result;
