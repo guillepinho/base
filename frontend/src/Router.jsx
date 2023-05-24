@@ -2,8 +2,8 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 // Pages
-import LoginScreen from './pages/Login/LoginScreen';
-import CreateUser from './pages/CreateUser/CreateUser';
+import LoginScreen from './pages/LoginScreen';
+import CreateUser from './pages/CreateUser';
 
 function Router() {
   return (

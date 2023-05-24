@@ -4,15 +4,15 @@ import { useNavigate } from 'react-router';
 import {
   Box, Button, Card, Typography, TextField,
 } from '@mui/material';
-import { useSnack } from '../../context/snackbarContext';
+import { useSnack } from '../context/snackbarContext';
 // Logic
-import routes from '../../services/routes';
-import localStorage from '../../utils/localStorage';
+import routes from '../services/routes';
+import localStorage from '../utils/localStorage';
 // Schema
-import { schema } from '../../schemas/login';
+import { schema } from '../schemas/login';
 // Style
-import { buttonCss, textfieldCss } from '../../theme/styles/style';
-import logo from '../../assets/logo-no-background.svg';
+import { buttonCss, textfieldCss } from '../theme/styles/style';
+import logo from '../assets/logo-no-background.svg';
 
 function LoginScreen() {
   const navigate = useNavigate();

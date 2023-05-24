@@ -7,17 +7,17 @@ import {
 import { DatePicker } from '@mui/x-date-pickers';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import dayjs from 'dayjs';
-import { useSnack } from '../../context/snackbarContext';
+import { useSnack } from '../context/snackbarContext';
 // Logic
-import routes from '../../services/routes';
+import routes from '../services/routes';
 // Schema
-import schema from '../../schemas/createUser';
+import schema from '../schemas/createUser';
 // Style
 import {
   buttonCss, textfieldCss, datefieldCss, noBgButtonCss,
-} from '../../theme/styles/style';
-import { handleCPF, handlePhoneNumber } from '../../utils/handlers';
-import { removeMasks } from '../../utils/inputMasks';
+} from '../theme/styles/style';
+import { handleCPF, handlePhoneNumber } from '../utils/handlers';
+import { removeMasks } from '../utils/inputMasks';
 
 function CreateUser() {
   const navigate = useNavigate();
