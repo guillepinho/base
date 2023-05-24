@@ -1,5 +1,4 @@
 import { createTheme } from '@mui/material/styles';
-import { red } from '@mui/material/colors';
 
 const theme = createTheme({
   palette: {
@@ -15,7 +14,7 @@ const theme = createTheme({
       main: '#6272a4',
     },
     focused: {
-      main: '#8be9fd'
+      main: '#8be9fd',
     },
     warning: {
       main: '#44475a',
@@ -24,8 +23,8 @@ const theme = createTheme({
       main: '#ff5555',
     },
     success: {
-      main: '#50fa7b'
-    }
+      main: '#50fa7b',
+    },
   },
 });
 

@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 // Pages
 import LoginScreen from './pages/LoginScreen';
 import CreateUser from './pages/CreateUser';
+import NotFound from './pages/NotFound';
 
 function Router() {
   return (
@@ -12,7 +13,7 @@ function Router() {
 
       <Route path="/create" element={<CreateUser />} />
 
-      <Route path="*" element={<h1>Not Found</h1>} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }

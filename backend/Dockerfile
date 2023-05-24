@@ -1,7 +1,6 @@
 FROM node:18.16
 
 RUN apt update
-RUN apt install lsof
 
 COPY package.json .
 
@@ -11,4 +10,6 @@ COPY . .
 
 EXPOSE 8000
 
-ENTRYPOINT [ "sh", "-c", "npm i && npm run dev" ]
+RUN npm install -g sequelize-cli
+
+ENTRYPOINT [ "sh", "-c", "npm i && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all && npm run dev" ]
